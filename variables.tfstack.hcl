@@ -28,3 +28,7 @@ variable "subnets" {
   description = "Subnets for the vnet"
   type        = map(list(string))
 }
+
+variable "subscription_id" {
+  type = string
+}
