@@ -1,6 +1,6 @@
 # Configure the Microsoft Azure Provider
 required_providers {
-  azure = {
+  azurerm = {
     source  = "hashicorp/azurerm"
     version = "~> 4.00.0"
   }
@@ -11,8 +11,6 @@ required_providers {
   }
 }
 
-provider "azurerm" "this" {
-    features {}
-}
+provider "azurerm" "main" {}
 
-provider "random" "this" {}
+provider "random" "main" {}
