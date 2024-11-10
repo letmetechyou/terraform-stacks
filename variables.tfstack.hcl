@@ -32,3 +32,11 @@ variable "subnets" {
 variable "subscription_id" {
   type = string
 }
+
+variable "client_id" {
+  
+}
+
+variable "client_secret" {
+  
+}
