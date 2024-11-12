@@ -1,28 +1,26 @@
-locals {
-  name = "${var.prefix}-net-${var.suffix}"
+variable "address_space" {
+
 }
 
-resource "azurerm_resource_group" "main" {
-  name     = local.name
-  location = var.location
-
-  tags = var.tags
+variable "virtual_network_name" {
+  
 }
 
-resource "azurerm_virtual_network" "main" {
-  name                = local.name
-  resource_group_name = azurerm_resource_group.main.name
-  location            = azurerm_resource_group.main.location
-  address_space       = [var.cidr_range]
-
-  tags = var.tags
+variable "location" {
+  
 }
 
-resource "azurerm_subnet" "main" {
-  for_each = var.subnets
+resource "azurerm_virtual_network" "virtual_network" {
+  # Required
+  name = var.virtual_network_name
+  resource_group_name = var.resource_group.name
+  address_space = var.address_space
+  location      = var.resource_group.location
+}
 
-  name                 = each.key
-  resource_group_name  = azurerm_resource_group.main.name
-  virtual_network_name = azurerm_virtual_network.main.name
-  address_prefixes     = each.value
+variable "resource_group" {
+  type = object({
+    name = string
+    location = string
+  })
 }

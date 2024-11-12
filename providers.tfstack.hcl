@@ -1,16 +1,25 @@
-# Configure the Microsoft Azure Provider
 required_providers {
   azurerm = {
     source  = "hashicorp/azurerm"
-    version = "~> 4.00.0"
+    version = "~> 4.0"
+  }
+
+  random = {
+    source  = "hashicorp/random"
+    version = "~> 3.6.3"
   }
 }
 
-provider "azurerm" "main" {
+provider "azurerm" "this" {
   config {
     features {}
+    use_cli         = false
+    use_oidc        = true
+    oidc_token      = var.identity_token
+    client_id       = var.client_id
     subscription_id = var.subscription_id
-    client_id = var.client_id
-    client_secret = var.client_secret
+    tenant_id       = var.tenant_id
   }
 }
+
+provider "random" "this" {}

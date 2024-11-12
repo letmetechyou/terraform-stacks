@@ -1,44 +1,37 @@
 variable "location" {
-  description = "Location for the resources"
   type        = string
-  default = "eastus"
+  description = "Azure location name"
 }
 
-variable "prefix" {
-  description = "Prefix for the resources"
-  type        = string
+variable "address_space" {
+  type = list(string)
 }
 
-variable "suffix" {
-  description = "Suffix for the resources"
-  type        = string
-}
-
-variable "tags" {
-  description = "Tags for the resources"
-  type        = map(string)
-}
-
-variable "cidr_range" {
-  description = "CIDR range for the vnet"
-  type        = string
-}
-
-variable "subnets" {
-  description = "Subnets for the vnet"
-  type        = map(list(string))
-}
-
-variable "subscription_id" {
+variable "resource_group_name" {
   type = string
+}
+
+variable "virtual_network_name" {
+  type = string
+}
+
+variable "identity_token" { 
+  type        = string 
+  ephemeral   = true
+  description = "Identity token for provider authentication"
 }
 
 variable "client_id" {
-  type = string
-  
+  type        = string
+  description = "Azure app registration client ID"
 }
 
-variable "client_secret" {
-  type = string
-  
+variable "subscription_id" {
+  type        = string
+  description = "Azure subscription ID"
+}
+
+variable "tenant_id" {
+  type        = string
+  description = "Azure tenant ID"
 }
